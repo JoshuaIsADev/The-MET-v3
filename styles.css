@@ -209,6 +209,10 @@ footer {
 }
 
 @media screen and (max-height: 500px) {
+  body {
+    height: calc(100% - 50px);
+  }
+
   h1 {
     font-size: 1.75rem;
   }
@@ -225,7 +229,7 @@ footer {
 
   footer {
     padding-left: 1rem;
-    padding-bottom: 0.75rem;
+    padding-bottom: 1rem;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -234,7 +238,7 @@ footer {
   #art-info {
     right: 0;
     bottom: 0;
-    padding: 1rem 1rem 0.75rem;
+    padding: 1rem 1rem 1rem;
     width: 32rem;
   }
 
@@ -249,5 +253,6 @@ footer {
 
   .art-img {
     height: 100%;
+    min-width: 100vw;
   }
 }
