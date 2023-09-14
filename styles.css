@@ -157,3 +157,42 @@ footer {
     gap: 0.5rem;
   }
 }
+
+@media screen and (max-height: 500px) {
+  h1 {
+    font-size: 1.75rem;
+  }
+  h2 {
+    font-size: 1rem;
+  }
+
+  header {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    padding: 1rem;
+  }
+
+  footer {
+    padding: 1rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+
+  #art-info {
+    right: 0;
+    bottom: 0;
+    padding: 1rem 1rem 1rem;
+    width: 28rem;
+  }
+
+  .art-artist,
+  .art-description {
+    padding-bottom: 1rem;
+  }
+
+  .logo {
+    gap: 0.5rem;
+  }
+}
