@@ -92,12 +92,16 @@ footer {
   /* min-width: 100vw; */
   left: 0;
   top: 0;
+  padding: 0;
+  margin: 0;
 }
 
 .art-img {
   object-fit: cover;
   width: 100%;
   min-height: 100dvh;
+  padding: 0;
+  margin: 0;
 }
 
 #art-display-min {
@@ -182,6 +186,7 @@ footer {
 
   .art-img {
     width: 100dvh;
+    height: 100dvh;
   }
 
   #art-info {
@@ -238,5 +243,9 @@ footer {
 
   .logo {
     gap: 0.5rem;
+  }
+
+  .art-img {
+    height: 100%;
   }
 }
