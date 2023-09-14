@@ -1,9 +1,9 @@
 * {
   box-sizing: border-box;
   margin: 0;
-  margin-bottom: -5px;
   padding: 0;
   font-size: 12px;
+  margin-bottom: -5px;
 }
 
 body {
@@ -16,6 +16,7 @@ body {
   overflow: auto;
   min-height: 100vh;
   min-height: -webkit-fill-available;
+  margin-bottom: -5px;
 }
 
 html {
@@ -204,15 +205,16 @@ footer {
 }
 
 @media screen and (max-height: 500px) {
-  body {
-    height: calc(100% - 50px);
-  }
-
   h1 {
     font-size: 1.75rem;
   }
+
   h2 {
     font-size: 1rem;
+  }
+
+  h5 {
+    font-size: 0.5rem;
   }
 
   header {
@@ -224,7 +226,7 @@ footer {
 
   footer {
     padding-left: 1rem;
-    padding-bottom: 1rem;
+    padding-bottom: 2rem;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -233,7 +235,7 @@ footer {
   #art-info {
     right: 0;
     bottom: 0;
-    padding: 1rem 1rem 1rem;
+    padding: 1rem 1rem 2rem;
     width: 32rem;
   }
 
@@ -247,7 +249,8 @@ footer {
   }
 
   .art-img {
-    height: 100%;
-    min-width: 100vw;
+    min-height: 100vh;
+    width: 100vw;
+    margin-bottom: -10px;
   }
 }
