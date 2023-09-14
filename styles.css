@@ -14,11 +14,15 @@ body {
   line-height: 1.5rem;
   color: #fff;
   overflow: auto;
-  -webkit-text-size-adjust: none;
+  /* -webkit-text-size-adjust: none; */
 }
 
 html {
-  -webkit-text-size-adjust: 100%;
+  -webkit-text-size-adjust: none;
+}
+
+:root {
+  --real100vh: 100vh;
 }
 
 h1,
@@ -93,7 +97,7 @@ footer {
 .art-img {
   object-fit: cover;
   width: 100%;
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 #art-display-min {
@@ -177,7 +181,7 @@ footer {
   }
 
   .art-img {
-    width: 100vh;
+    width: 100dvh;
   }
 
   #art-info {
