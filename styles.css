@@ -14,17 +14,12 @@ body {
   line-height: 1.5rem;
   color: #fff;
   overflow: auto;
-  /* -webkit-text-size-adjust: none; */
   min-height: 100vh;
   min-height: -webkit-fill-available;
 }
 
 html {
-  -webkit-text-size-adjust: none;
-}
-
-:root {
-  --real100vh: 100vh;
+  -webkit-text-size-adjust: 100%;
 }
 
 h1,
