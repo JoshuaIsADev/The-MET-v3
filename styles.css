@@ -6,12 +6,16 @@
 }
 
 body {
-  background-color: #64615a;
+  min-height: 100vh;
   font-family: 'Noto Serif Display', serif;
   color: #e7dec1;
-  overflow: hidden;
-  margin-bottom: -5px;
-  height: 100vh;
+  background-color: #64615a;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-image: url(./img/DT4167.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 html {
@@ -23,34 +27,31 @@ a {
   color: #161616;
 }
 
-h1,
-h2,
-h3,
-h5,
-p {
-  font-weight: 300;
-}
-
 h1 {
-  font-size: 12rem;
+  font-size: 10.5vw;
+  font-size: calc(2.5rem + 8vw);
   font-weight: 100;
+  word-break: break-word;
   text-transform: uppercase;
   letter-spacing: -0.5rem;
+  word-spacing: 6rem;
+  text-align: justify;
   text-align-last: justify;
-  line-height: 10rem;
+  line-height: calc(2rem + 6vw);
 }
 
 h2 {
-  font-size: 4rem;
+  font-size: calc(2.5rem + 1vw);
   font-weight: 100;
   letter-spacing: -0.2rem;
-  line-height: 4rem;
+  line-height: calc(2.5rem + 0.75vw);
 }
 
 h3 {
   font-size: 2rem;
   font-weight: 100;
   text-transform: uppercase;
+  line-height: 1.7rem;
 }
 
 h4 {
@@ -69,74 +70,56 @@ p {
   letter-spacing: 0.1rem;
 }
 
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
 header {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  padding: 2rem;
 }
 
 section {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-items: flex-start;
-  position: absolute;
-  top: 0;
   width: 100%;
-  height: 100%;
-  padding: 0 2rem;
+  padding-top: 1.5rem;
 }
 
 nav {
   display: flex;
-  gap: 3rem;
   align-items: center;
+  gap: 3rem;
 }
 
 footer {
-  padding: 2rem;
-  position: fixed;
   display: flex;
   justify-content: space-between;
   align-items: end;
-  bottom: 0;
   width: 100%;
-  margin: auto;
+  padding-top: 2rem;
 }
 
 #modal {
+  display: none;
   position: absolute;
   top: 0;
   z-index: -5;
   width: 100%;
   height: 100%;
   background-color: #161616;
-  opacity: 0.6;
-  display: none;
+  opacity: 0.8;
 }
 
-.art-artist-container {
-  position: relative;
-  /* top: -3rem; */
-  width: 100%;
-}
-
-.art-title-container {
-  position: relative;
-  /* top: -6rem; */
-  width: 100%;
-}
-
-.footer-logo {
+#art-info {
   display: flex;
-  align-items: baseline;
-  gap: 2rem;
-}
-
-.logo {
-  width: 6rem;
-  height: 6rem;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  width: 50rem;
 }
 
 #navigation {
@@ -146,14 +129,28 @@ footer {
   gap: 1.5rem;
 }
 
-.art-title {
-  padding-bottom: 1.5rem;
+.art-artist-container {
+  width: 100%;
 }
 
-.art-info {
-  padding-top: 50vh;
-  min-width: 50rem;
-  max-width: 50rem;
+.art-title-container {
+  padding-top: 0.75vw;
+  width: 100%;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: flex-end;
+  gap: 2rem;
+}
+
+.logo {
+  width: 6rem;
+  height: 6rem;
+}
+
+.art-title {
+  padding-bottom: 1.5rem;
 }
 
 .art-description {
@@ -163,30 +160,20 @@ footer {
 .art-location {
   text-transform: uppercase;
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 500;
+  letter-spacing: 0.1rem;
 }
 
-.art-display {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -100;
-  width: 101vw;
-  height: 101vh;
-  /* transition: all 1s ease; */
+.location {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 1rem;
 }
 
-.art-display-min {
-  position: absolute;
-  padding-top: 20rem;
-  padding-bottom: 8rem;
-  padding-left: 55rem;
-  padding-right: 2rem;
-  height: 100vh;
-  width: 100vw;
-  background-color: #161616;
-  z-index: -100;
-  /* transition: all 1s ease; */
+.arrow-right {
+  scale: 0.5;
+  margin-left: -0.5rem;
 }
 
 .art-img-min {
@@ -228,234 +215,70 @@ footer {
   background: url('./svg/right.svg') center no-repeat;
 }
 
-@media screen and (min-width: 1800px) {
-  h1 {
-    font-size: 16rem;
-    letter-spacing: -0.5rem;
-    line-height: 13rem;
-  }
-
-  .art-artist-container {
-    /* top: -4rem; */
-  }
-
-  .art-title-container {
-    /* top: -8rem; */
-  }
-
-  .art-display-min {
-    padding-top: 23rem;
-  }
-}
-
-@media screen and (max-width: 1400px) {
-  h1 {
-    font-size: 10rem;
-    letter-spacing: -0.5rem;
-    line-height: 8rem;
-  }
-
-  h2 {
-    font-size: 3rem;
-    font-weight: 200;
-    letter-spacing: -0.1rem;
-    line-height: 3rem;
-  }
-
-  .art-info {
-    padding-top: 40vh;
-    min-width: 40rem;
-    max-width: 40rem;
-  }
-}
-
-@media screen and (max-width: 1150px) {
-  h1 {
-    font-size: 8rem;
-    letter-spacing: -0.3rem;
-    line-height: 7rem;
-  }
-
-  h2 {
-    font-size: 2.5rem;
-    letter-spacing: -0.05rem;
-  }
-
-  .art-info {
-    padding-top: 40vh;
-    min-width: 40rem;
-    max-width: 40rem;
-  }
-}
-
-@media screen and (max-width: 920px) {
-  #navigation {
-    gap: 1rem;
-  }
-
-  h1 {
-    font-size: 6.5rem;
-    font-weight: 200;
-    letter-spacing: -0.1rem;
-    line-height: 5.5rem;
-  }
-
-  h2 {
-    font-weight: 200;
-    letter-spacing: 0rem;
-  }
-
-  h3 {
-    font-size: 1.5rem;
-  }
-
-  .art-title-container {
-  }
-
-  .logo {
-    width: 4rem;
-    height: 4rem;
-  }
-
-  .art-info {
-    padding-top: 40vh;
-    min-width: 40rem;
-    max-width: 40rem;
-  }
-
-  .btn {
-    height: 4rem;
-    width: 4rem;
-    scale: 0.8;
-  }
-
-  .btn:hover {
-    scale: 0.9;
-    transition: 0.05s ease-out;
-  }
-}
-
 @media screen and (max-width: 800px) {
-  #navigation {
-    gap: 0.75rem;
-  }
-
-  h1 {
-    font-size: 10vw;
-    font-weight: 200;
-    line-height: 9vw;
-    text-align: center;
-    text-align-last: center;
-  }
-
+  h1,
   h2 {
-    letter-spacing: 0rem;
     font-weight: 200;
-    text-align: center;
   }
 
   h3 {
     font-size: 1.5rem;
-  }
-
-  p {
-    font-size: 1rem;
-    text-align: center;
-  }
-
-  .logo {
-    width: 4rem;
-    height: 4rem;
-  }
-
-  .art-artist-container {
-    flex-wrap: wrap;
-    /* padding: 0 3rem; */
-  }
-
-  .art-title-container {
-    margin: auto;
-    padding: 0 5vw;
-  }
-
-  .art-info {
-    padding-top: 0vh;
-    min-width: 70vw;
-    max-width: 70vw;
-    margin: auto;
-  }
-
-  .btn {
-    height: 4rem;
-    width: 4rem;
-    scale: 0.8;
-  }
-
-  .btn:hover {
-    scale: 0.9;
-    transition: 0.05s ease-out;
-  }
-}
-@media screen and (max-width: 600px) {
-  #navigation {
-    gap: 0rem;
-  }
-
-  h1 {
     font-weight: 300;
   }
 
+  #art-info {
+    width: 70%;
+  }
+
+  #navigation {
+    padding-left: 2rem;
+    gap: 0;
+  }
+
+  .btn {
+    scale: 0.8;
+  }
+
+  .btn:hover {
+    scale: 0.9;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  h1,
   h2 {
-    font-size: 2rem;
-    line-height: 2rem;
-    letter-spacing: 0rem;
     font-weight: 200;
   }
 
   h3 {
-    font-size: 1.5rem;
-    line-height: 1.25rem;
-    padding-top: 0.25rem;
-    padding-bottom: 0.5rem;
-    padding-right: 1rem;
-  }
-
-  .logo {
-    width: 4rem;
-    height: 4rem;
-  }
-
-  .art-artist-container {
-    flex-wrap: wrap;
-  }
-
-  .art-title-container {
-    padding: 2vw;
-    margin: auto;
-  }
-
-  .art-info {
-    padding-top: 8vh;
-    min-width: 80vw;
-    max-width: 80vw;
-    margin: auto;
+    line-height: 1.5rem;
   }
 
   .footer-logo {
-    display: flex;
     flex-direction: column;
-    align-items: baseline;
-    gap: 0rem;
+    align-items: start;
+    justify-content: left;
+    gap: 0;
+    padding: 0;
+    width: 10rem;
   }
 
-  .btn {
-    height: 4rem;
-    width: 4rem;
-    scale: 0.7;
+  .logo {
+    scale: 0.75;
+    position: relative;
+    left: -0.8rem;
+    bottom: -0.5rem;
   }
+}
 
-  .btn:hover {
-    scale: 0.8;
-    transition: 0.05s ease-out;
+@media screen and (max-width: 450px) {
+  #art-info {
+    width: 100%;
+  }
+}
+
+@media screen and (max-height: 450px) and (orientation: landscape) {
+  main {
+    padding-left: 5rem;
   }
 }
