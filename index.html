@@ -24,14 +24,15 @@
   <body>
     <main>
       <header>
-        <div class="art-artist-container">
-          <h1 class="art-artist">Francesco Guardi</h1>
+        <div class="header-logo">
+          <img src="./logo04.png" alt="The MET Logo" class="logo" />
+          <h4>European Paintings</h4>
         </div>
-        <div class="art-title-container">
-          <h2 class="art-title">
-            The Antechamber of the Sala del Maggior Consiglio, ca. 1765–68
-          </h2>
-        </div>
+        <nav id="navigation">
+          <button class="btn btn-minimize"></button>
+          <button class="btn btn-previous"></button>
+          <button class="btn btn-next"></button>
+        </nav>
       </header>
       <section id="art-info">
         <p class="art-description">
@@ -50,22 +51,21 @@
           </p>
         </div>
       </section>
-      <footer>
-        <div class="footer-logo">
-          <img src="./logo04.png" alt="The MET Logo" class="logo" />
-          <h3>European Paintings</h3>
+      <section id="art-title">
+        <div class="art-artist-container">
+          <h1 class="art-artist">Francesco Guardi</h1>
         </div>
-        <nav id="navigation">
-          <button class="btn btn-expand"></button>
-          <button class="btn btn-mode"></button>
-          <button class="btn btn-previous"></button>
-          <button class="btn btn-next"></button>
-        </nav>
-      </footer>
+        <div class="art-title-container">
+          <h2 class="art-title">
+            The Antechamber of the Sala del Maggior Consiglio
+          </h2>
+          <h3 class="art-year">ca. 1765–68</h3>
+        </div>
+      </section>
     </main>
     <div id="modal"></div>
-    <!-- <div class="art-display">
-      <img src="./img/DT4167.jpg" alt="" class="art-img" />
-    </div> -->
+    <!-- <div id="art-display">
+      <img src="./img/DT4167.jpg" alt="" class="art-img" /> -->
+    </div>
   </body>
 </html>

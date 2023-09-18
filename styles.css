@@ -9,13 +9,21 @@ body {
   min-height: 100vh;
   font-family: 'Noto Serif Display', serif;
   color: #e7dec1;
-  background-color: #64615a;
+  background-color: #5d615c;
   overflow-x: hidden;
   overflow-y: auto;
-  background-image: url(./img/DT4167.jpg);
+
+  /* background */
+  background-image: url('./img/DT4167.jpg');
+  background-position: top;
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: top;
+
+  /* shift down */
+  /* background-position-y: 45vh;
+  background-size: contain;
+  background-repeat: no-repeat;
+  overflow-y: scroll; */
 }
 
 html {
@@ -28,35 +36,37 @@ a {
 }
 
 h1 {
-  font-size: 10.5vw;
-  font-size: calc(2.5rem + 8vw);
-  font-weight: 100;
+  font-size: 6rem;
+  font-weight: 400;
   word-break: break-word;
   text-transform: uppercase;
   letter-spacing: -0.5rem;
-  word-spacing: 6rem;
+  word-spacing: 2rem;
   text-align: justify;
   text-align-last: justify;
-  line-height: calc(2rem + 6vw);
+  line-height: 4.4rem;
 }
 
 h2 {
-  font-size: calc(2.5rem + 1vw);
+  font-size: 2.5rem;
   font-weight: 100;
-  letter-spacing: -0.2rem;
-  line-height: calc(2.5rem + 0.75vw);
+  letter-spacing: -0.1rem;
+  line-height: 2.5rem;
+  margin-bottom: -1.8rem;
 }
 
 h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: -0.5rem;
+}
+
+h4 {
   font-size: 2rem;
   font-weight: 100;
   text-transform: uppercase;
   line-height: 1.7rem;
-}
-
-h4 {
-  font-weight: 700;
-  text-transform: uppercase;
+  margin-bottom: -0.1rem;
 }
 
 h5 {
@@ -74,33 +84,23 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 100vh;
-  padding: 2rem;
+  min-height: 70vh;
+  padding: 3rem;
 }
 
 header {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: end;
   width: 100%;
-}
-
-section {
-  width: 100%;
-  padding-top: 1.5rem;
+  padding-bottom: 2rem;
 }
 
 nav {
   display: flex;
   align-items: center;
   gap: 3rem;
-}
-
-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  width: 100%;
-  padding-top: 2rem;
 }
 
 #modal {
@@ -118,8 +118,18 @@ footer {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-end;
   position: relative;
-  width: 50rem;
+  width: 100%;
+}
+
+#art-title {
+  padding-top: 4rem;
+}
+
+.art-year {
+  min-width: 15rem;
+  text-align: right;
 }
 
 #navigation {
@@ -127,6 +137,8 @@ footer {
   flex-wrap: nowrap;
   flex-direction: row;
   gap: 1.5rem;
+  margin-right: -0.7rem;
+  margin-bottom: -0.9rem;
 }
 
 .art-artist-container {
@@ -134,19 +146,22 @@ footer {
 }
 
 .art-title-container {
-  padding-top: 0.75vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
   width: 100%;
 }
 
-.footer-logo {
+.header-logo {
   display: flex;
   align-items: flex-end;
+  width: 20rem;
   gap: 2rem;
 }
 
 .logo {
-  width: 6rem;
-  height: 6rem;
+  width: 3.25rem;
+  height: 3.25rem;
 }
 
 .art-title {
@@ -155,6 +170,8 @@ footer {
 
 .art-description {
   padding-bottom: 3rem;
+  width: 50rem;
+  text-align: right;
 }
 
 .art-location {
@@ -182,6 +199,22 @@ footer {
   max-height: 100%;
 }
 
+#art-display {
+  position: absolute;
+  top: -2rem;
+  left: -2rem;
+  width: 105vw;
+  height: 105vh;
+  z-index: -100;
+
+  /* shift down */
+
+  /* top: 45vh;
+  left: 0;
+  width: auto;
+  height: auto; */
+}
+
 .art-img {
   object-fit: cover;
   width: 100%;
@@ -189,23 +222,21 @@ footer {
 }
 
 .btn {
-  height: 4rem;
-  width: 4rem;
+  height: 3rem;
+  width: 3rem;
   border: solid 0.5px #e7dec1;
+  border: none;
   border-radius: 4rem;
   cursor: pointer;
 }
 
 .btn:hover {
-  scale: 1.2;
+  scale: 1.4;
   transition: 0.05s ease-out;
 }
 
-.btn-expand {
-  background: url('./svg/expand.svg') center no-repeat;
-}
-.btn-mode {
-  background: url('./svg/dark.svg') center no-repeat;
+.btn-minimize {
+  background: url('./svg/minimize2.svg') center no-repeat;
 }
 
 .btn-previous {
@@ -215,70 +246,91 @@ footer {
   background: url('./svg/right.svg') center no-repeat;
 }
 
-@media screen and (max-width: 800px) {
-  h1,
+@media screen and (max-width: 700px) {
+  h1 {
+    font-size: 4.5rem;
+    font-weight: 400;
+    letter-spacing: -0.5rem;
+    word-spacing: 2rem;
+    line-height: 3.4rem;
+  }
+
   h2 {
+    font-size: 2rem;
     font-weight: 200;
+    line-height: 2rem;
+    margin-bottom: -1.8rem;
   }
 
   h3 {
-    font-size: 1.5rem;
-    font-weight: 300;
+    font-size: 1.3rem;
+    margin-bottom: -0.4rem;
   }
 
-  #art-info {
-    width: 70%;
+  h4 {
+    font-size: 1.5rem;
+    font-weight: 200;
+    line-height: 1.2rem;
+    margin-bottom: -0.1rem;
+  }
+
+  p {
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0.1rem;
   }
 
   #navigation {
-    padding-left: 2rem;
-    gap: 0;
+    gap: 0rem;
   }
 
-  .btn {
-    scale: 0.8;
+  .header-logo {
+    display: flex;
+    align-items: flex-end;
+    width: 11rem;
+    gap: 1rem;
   }
 
-  .btn:hover {
-    scale: 0.9;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  h1,
-  h2 {
-    font-weight: 200;
+  .location {
+    justify-content: space-between;
+    width: 100%;
   }
 
-  h3 {
-    line-height: 1.5rem;
+  .art-location {
+    font-size: 0.65rem;
   }
 
-  .footer-logo {
-    flex-direction: column;
-    align-items: start;
-    justify-content: left;
-    gap: 0;
-    padding: 0;
-    width: 10rem;
+  .art-description {
+    padding-bottom: 3rem;
+    width: 100%;
+    text-align: justify;
+    text-align-last: justify;
   }
 
   .logo {
-    scale: 0.75;
-    position: relative;
-    left: -0.8rem;
-    bottom: -0.5rem;
+    width: 2.25rem;
+    height: 2.25rem;
   }
-}
 
-@media screen and (max-width: 450px) {
-  #art-info {
-    width: 100%;
+  .btn {
+    scale: 0.75;
   }
 }
 
 @media screen and (max-height: 450px) and (orientation: landscape) {
   main {
     padding-left: 5rem;
+  }
+}
+
+@media (hover: none) and (max-width: 700px) {
+  .btn:hover {
+    scale: 0.75;
+  }
+}
+
+@media (hover: none) and (min-width: 701px) {
+  .btn:hover {
+    scale: 1;
   }
 }
