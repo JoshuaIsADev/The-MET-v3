@@ -42,6 +42,7 @@ h2 {
   letter-spacing: -0.1rem;
   line-height: 2.5rem;
   margin-bottom: -1.8rem;
+  font-style: italic;
 }
 
 h3 {
@@ -338,7 +339,7 @@ nav {
     font-size: 1.5rem;
     font-weight: 200;
     line-height: 1.2rem;
-    margin-bottom: -0.1rem;
+    margin-bottom: 0rem;
   }
 
   p {
