@@ -148,6 +148,10 @@ nav {
   width: 100%;
 }
 
+.art-location {
+  line-height: 1rem;
+}
+
 .header-logo {
   display: flex;
   align-items: flex-end;
@@ -297,7 +301,7 @@ nav {
   }
 
   .art-description {
-    padding-bottom: 3rem;
+    padding-bottom: 2rem;
     width: 100%;
     text-align: justify;
   }
@@ -308,14 +312,14 @@ nav {
   }
 }
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 420px), (max-height: 420px) {
   h1 {
     font-size: 2.5rem;
     font-weight: 600;
     letter-spacing: -0.2rem;
     word-spacing: 2rem;
     line-height: 1.9rem;
-    padding-bottom: 1rem;
+    padding-bottom: 0.25rem;
   }
 
   h2 {
@@ -327,7 +331,7 @@ nav {
 
   h3 {
     font-size: 1.2rem;
-    margin-bottom: -0.4rem;
+    margin-bottom: -0.3rem;
   }
 
   h4 {
@@ -371,9 +375,37 @@ nav {
   }
 }
 
-@media screen and (max-height: 450px) and (orientation: landscape) {
+@media screen and (max-height: 300px) {
+  h1 {
+    font-size: 2.2rem;
+    font-weight: 600;
+    letter-spacing: -0.2rem;
+    word-spacing: 2rem;
+    line-height: 1.9rem;
+    padding-bottom: 0.15rem;
+  }
+
+  footer {
+    left: 1.25rem;
+  }
+
+  .art-description {
+    padding-bottom: 0.5rem;
+  }
+
+  #art-title {
+    padding-top: 0.5rem;
+  }
+}
+
+@media screen and (max-height: 450px), (orientation: landscape) {
   main {
-    padding-left: 5rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+
+  footer {
+    left: 1.25rem;
   }
 }
 
