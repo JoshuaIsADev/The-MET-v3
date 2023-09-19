@@ -28,11 +28,6 @@
           <img src="./logo04.png" alt="The MET Logo" class="logo" />
           <h4>European Paintings</h4>
         </div>
-        <!-- <nav id="navigation">
-          <button class="btn btn-minimize"></button>
-          <button class="btn btn-previous"></button>
-          <button class="btn btn-next"></button>
-        </nav> -->
       </header>
       <section id="art-info">
         <p class="art-description">
@@ -45,7 +40,7 @@
           collection.
         </p>
         <div class="location">
-          <img src="./svg/right.svg" alt="right arrow" class="arrow-right" />
+          <img src="./svg/arrow.svg" alt="right arrow" class="arrow-location" />
           <p class="art-location">
             On view at The Met Fifth Avenue in Gallery 541
           </p>
@@ -65,14 +60,16 @@
     </main>
     <footer>
       <nav id="navigation">
-        <button class="btn btn-minimize"></button>
-        <button class="btn btn-previous"></button>
-        <button class="btn btn-next"></button>
+        <button class="btn-minimize btn"></button>
+        <!-- <button id="btn-previous" class="btn">Previous</button> -->
+        <button class="btn-next btn"></button>
       </nav>
     </footer>
     <div id="modal"></div>
-    <div id="art-display">
-      <img src="./img/DT2101.jpg" alt="" class="art-img" />
+    <div class="art-display">
+      <img src="./img/DT2101.jpg" alt="Artwork image" class="art-img" />
     </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./app.js"></script>
   </body>
 </html>

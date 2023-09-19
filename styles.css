@@ -7,15 +7,31 @@
 
 body {
   min-height: 100vh;
+  height: 100vh;
   font-family: 'Noto Serif Display', serif;
   color: #e7dec1;
   background-color: #5d615c;
   overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.overflow {
   overflow-y: auto;
 }
 
 html {
   -webkit-text-size-adjust: 100%;
+}
+
+html::-webkit-scrollbar {
+  width: 0.75rem;
+}
+html::-webkit-scrollbar-thumb {
+  background-color: #807d75;
+}
+
+html::-webkit-scrollbar-track {
+  background-color: #5d615c;
 }
 
 a {
@@ -90,7 +106,7 @@ header {
 footer {
   position: fixed;
   left: 0.5rem;
-  bottom: 0;
+  bottom: 1rem;
   padding: 2rem;
 }
 
@@ -135,7 +151,7 @@ nav {
   flex-direction: row;
   gap: 1.5rem;
   margin-right: -0.7rem;
-  margin-bottom: -0.9rem;
+  margin-bottom: 0rem;
 }
 
 .art-artist-container {
@@ -189,62 +205,65 @@ nav {
   gap: 1rem;
 }
 
-.arrow-right {
-  scale: 0.5;
+.arrow-location {
+  scale: 0.75;
   margin-left: -0.5rem;
 }
 
-.art-img-min {
-  object-fit: contain;
-  max-width: 100%;
-  max-height: 100%;
-}
-
-#art-display {
+.art-display {
   position: absolute;
   top: -2rem;
   left: -2rem;
   width: 105vw;
   height: 105vh;
   z-index: -100;
+  transition: top 1s, left 1s, width 1s, height 1s, padding-top 1s;
 }
 
-#art-display-shift {
-  padding-top: 1rem;
+.min {
+  position: absolute;
+  top: 75vh;
   left: 0;
-  width: auto;
+  width: 100vw;
   height: auto;
 }
 
 .art-img {
   object-fit: cover;
+  object-position: top;
   width: 100%;
   height: 100%;
 }
 
 .btn {
-  height: 3rem;
-  width: 3rem;
-  border: solid 0.5px #e7dec1;
-  border: none;
-  border-radius: 4rem;
+  width: 4rem;
+  height: 4rem;
+  border: solid 1px #e7dec1;
+  border-radius: 2rem;
   cursor: pointer;
-}
-
-.btn:hover {
-  scale: 1.4;
-  transition: 0.05s ease-out;
+  background: none;
+  color: #e7dec1;
 }
 
 .btn-minimize {
-  background: url('./svg/minimize2.svg') center no-repeat;
+  background: url('./svg/minimize.svg') center no-repeat;
 }
 
-.btn-previous {
-  background: url('./svg/left.svg') center no-repeat;
+.rotate180 {
+  background: url('./svg/expand.svg') center no-repeat;
 }
+
+/* #btn-previous {
+  background: url('./svg/left.svg') center no-repeat;
+} */
+
 .btn-next {
-  background: url('./svg/right.svg') center no-repeat;
+  background: url('./svg/arrow.svg') center no-repeat;
+}
+
+.btn:hover {
+  scale: 1.2;
+  transition-duration: 0.25s;
 }
 
 @media screen and (max-width: 850px) {
@@ -356,14 +375,20 @@ nav {
 
   footer {
     left: -0.75rem;
+    bottom: 0rem;
+  }
+
+  .min {
+    top: 55vh;
+    width: 100vw;
   }
 
   #art-title {
     padding-top: 2rem;
   }
 
-  #art-display-shift {
-    padding-top: 2rem;
+  .art-description {
+    padding-bottom: 1rem;
   }
 
   .art-year {
@@ -373,6 +398,44 @@ nav {
 
   .btn {
     scale: 0.75;
+  }
+
+  #navigation {
+    position: fixed;
+    top: 1rem;
+    right: 2rem;
+  }
+}
+
+@media screen and (max-height: 450px) and (orientation: landscape) {
+  main {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+
+  footer {
+    left: 1.25rem;
+  }
+
+  #navigation {
+    position: fixed;
+    top: 1rem;
+    right: 4rem;
+  }
+
+  .min {
+    top: 75vh;
+    width: 100vw;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .min {
+    top: 70vh;
+  }
+
+  #navigation {
+    gap: 0;
   }
 }
 
@@ -390,6 +453,10 @@ nav {
     left: 1.25rem;
   }
 
+  .min {
+    top: 85vh;
+  }
+
   .art-description {
     padding-bottom: 0.5rem;
   }
@@ -397,19 +464,13 @@ nav {
   #art-title {
     padding-top: 0.5rem;
   }
-}
 
-@media screen and (max-height: 450px), (orientation: landscape) {
-  main {
-    padding-left: 4rem;
-    padding-right: 4rem;
-  }
-
-  footer {
-    left: 1.25rem;
+  #navigation {
+    position: fixed;
+    top: 1rem;
+    right: 4rem;
   }
 }
-
 @media (hover: none) and (max-width: 700px) {
   .btn:hover {
     scale: 0.75;
