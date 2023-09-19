@@ -116,17 +116,6 @@ nav {
   gap: 3rem;
 }
 
-#modal {
-  display: none;
-  position: absolute;
-  top: 0;
-  z-index: -5;
-  width: 100%;
-  height: 100%;
-  background-color: #161616;
-  opacity: 0.8;
-}
-
 #art-info {
   display: flex;
   flex-direction: column;
@@ -150,8 +139,6 @@ nav {
   flex-wrap: nowrap;
   flex-direction: row;
   gap: 1.5rem;
-  margin-right: -0.7rem;
-  margin-bottom: 0rem;
 }
 
 .art-artist-container {
@@ -206,8 +193,7 @@ nav {
 }
 
 .arrow-location {
-  scale: 0.75;
-  margin-left: -0.5rem;
+  scale: 0.5;
 }
 
 .art-display {
@@ -226,6 +212,7 @@ nav {
   left: 0;
   width: 100vw;
   height: auto;
+  padding-bottom: 9rem;
 }
 
 .art-img {
@@ -287,13 +274,6 @@ nav {
     margin-bottom: -0.4rem;
   }
 
-  h4 {
-    font-size: 1.5rem;
-    font-weight: 200;
-    line-height: 1.2rem;
-    margin-bottom: -0.1rem;
-  }
-
   p {
     font-size: 1rem;
     font-weight: 400;
@@ -312,7 +292,6 @@ nav {
   }
 
   .location {
-    justify-content: space-between;
     width: 100%;
   }
 
@@ -325,14 +304,9 @@ nav {
     width: 100%;
     text-align: justify;
   }
-
-  .logo {
-    width: 2.25rem;
-    height: 2.25rem;
-  }
 }
 
-@media screen and (max-width: 420px), (max-height: 420px) {
+@media screen and (max-width: 420px) {
   h1 {
     font-size: 2.5rem;
     font-weight: 600;
@@ -393,21 +367,32 @@ nav {
 
   .art-year {
     min-width: 8rem;
-    text-align: right;
+  }
+
+  .logo {
+    width: 2rem;
+    height: 2rem;
   }
 
   .btn {
     scale: 0.75;
   }
+}
 
-  #navigation {
-    position: fixed;
-    top: 1rem;
-    right: 2rem;
+/* LANDSCAPE ORIENTATION */
+
+@media screen and (orientation: landscape) {
+  .btn {
+    scale: 0.75;
   }
 }
 
 @media screen and (max-height: 450px) and (orientation: landscape) {
+  body {
+    overflow-y: auto;
+    height: 140vh;
+  }
+
   main {
     padding-left: 4rem;
     padding-right: 4rem;
@@ -417,25 +402,30 @@ nav {
     left: 1.25rem;
   }
 
-  #navigation {
-    position: fixed;
-    top: 1rem;
-    right: 4rem;
+  .art-display {
+    height: 145vh;
   }
 
   .min {
-    top: 75vh;
+    top: 115vh;
     width: 100vw;
+    padding-bottom: 0;
+  }
+
+  #navigation {
+    position: fixed;
+    right: 3.5rem;
+    top: 3rem;
+  }
+
+  .btn {
+    scale: 0.75;
   }
 }
 
 @media screen and (max-width: 300px) {
   .min {
     top: 70vh;
-  }
-
-  #navigation {
-    gap: 0;
   }
 }
 
@@ -471,14 +461,13 @@ nav {
     right: 4rem;
   }
 }
-@media (hover: none) and (max-width: 700px) {
+
+@media (hover: none) {
   .btn:hover {
     scale: 0.75;
   }
-}
 
-@media (hover: none) and (min-width: 701px) {
-  .btn:hover {
-    scale: 1;
+  .btn {
+    scale: 0.75;
   }
 }
