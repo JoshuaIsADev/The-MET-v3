@@ -129,7 +129,7 @@ nav {
   padding-top: 4rem;
 }
 
-.art-year {
+.art-date {
   min-width: 15rem;
   text-align: right;
 }
@@ -366,7 +366,7 @@ nav {
     padding-bottom: 1rem;
   }
 
-  .art-year {
+  .art-date {
     min-width: 8rem;
   }
 

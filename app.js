@@ -1,5 +1,9 @@
 const btnMin = document.querySelector('.btn-minimize');
+const btnNext = document.querySelector('.btn-next');
 const artDisplay = document.querySelector('.art-display');
+const artArtist = document.querySelector('.art-artist');
+const artTitle = document.querySelector('.art-title');
+const artDate = document.querySelector('.art-date');
 const bodyDocument = document.body;
 
 function scaleImage() {
@@ -20,8 +24,20 @@ bodyDocument.addEventListener('keydown', function (e) {
 });
 
 //NEXT ARTWORK EVENT LISTENER
+btnNext.addEventListener('click', function () {
+  collectArtwork().catch((err) => {
+    console.log('Error');
+    console.log(err);
+  });
+  console.log('next image');
+});
+
 bodyDocument.addEventListener('keydown', function (e) {
   if (e.key === 'ArrowRight') {
+    collectArtwork().catch((err) => {
+      console.log('Error');
+      console.log(err);
+    });
     console.log('next image');
   }
 });
@@ -35,50 +51,6 @@ function fetchRandomID(array) {
 
 // // FETCH ARTWORK ID
 
-// const fetchArtwork = (
-//   url = 'https://collectionapi.metmuseum.org/public/collection/v1/search',
-//   params = {}
-// ) => {
-//   return axios.get(url, {
-//     params: (params = {
-//       q: '',
-//       departmentId: 11,
-//       hasImages: 'true',
-//     }),
-//   });
-// };
-
-// async function fetchArtworkID() {
-//   const res = await axios.get(
-//     'https://collectionapi.metmuseum.org/public/collection/v1/search',
-//     {
-//       params: {
-//         q: '',
-//         departmentId: 11,
-//         hasImages: 'true',
-//       },
-//     }
-//   );
-//   // console.log(res.data.objectIDs);
-//   const returnedArray = await res.data.objectIDs;
-//   const randomIndex = await fetchRandomID(returnedArray);
-//   const returnedArtworkID = await `${returnedArray[`${randomIndex}`]}`;
-//   // console.log(returnedArtworkID);
-//   return showArtwork(returnedArtworkID);
-// }
-
-// async function showArtwork(returnedArtworkID) {
-//   const artworkData = await axios.get(
-//     `https://collectionapi.metmuseum.org/public/collection/v1/objects/${returnedArtworkID}`
-//   );
-//   // console.log(artworkData.data);
-// }
-
-// fetchArtworkID().catch((err) => {
-//   console.log('Error');
-// });
-
-//NEW
 async function fetchObjectsArray() {
   const res = await axios.get(
     'https://collectionapi.metmuseum.org/public/collection/v1/search',
@@ -106,59 +78,22 @@ async function fetchArtworkData() {
   const res = await axios.get(
     `https://collectionapi.metmuseum.org/public/collection/v1/objects/${artworkIndex}`
   );
+  // console.log(await res.data);
   return (returnedArtworkData = await res.data);
 }
 
-async function showImage() {
+async function collectArtwork() {
   const artworkData = await fetchArtworkData();
-  console.log(artworkData.primaryImage);
+  artDisplay.innerHTML = `
+  <img src="${artworkData.primaryImage}" alt="Artwork image" class="art-img" />`;
+  artTitle.innerHTML = artworkData.title;
+  artArtist.innerHTML = artworkData.artistDisplayName;
+  artDate.innerHTML = artworkData.objectDate;
+  console.log(artworkData.objectURL);
+  console.log(artworkData.medium);
 }
 
-showImage().catch((err) => {
+collectArtwork().catch((err) => {
   console.log('Error');
+  console.log(err);
 });
-
-async function artworkLoad() {
-  await fetchObjectsArray();
-  await fetchRandomID();
-  await fetchArtworkData();
-  // await showImage();
-  // await showTitle();
-  // await showArtist();
-  // await showDate();
-  // await showURL();
-  // await showMedium();
-}
-
-//OLD
-
-// axios
-//   .get('https://collectionapi.metmuseum.org/public/collection/v1/search', {
-//     params: {
-//       q: '',
-//       departmentId: 11,
-//       hasImages: 'true',
-//     },
-//   })
-//   .then((res) => {
-//     const returnedArray = res.data.objectIDs;
-//     const randomIndex = fetchRandomID(returnedArray);
-//     const returnedArtwork = `${returnedArray[`${randomIndex}`]}`;
-//     console.log(returnedArtwork);
-//     // const fetchImage
-//     return axios.get(
-//       `https://collectionapi.metmuseum.org/public/collection/v1/objects/${returnedArtwork}`
-//     );
-//   })
-//   .then((res) => {
-//     const returnedImageURL = res.data.primaryImage;
-//     const returnedTitle = res.data.title;
-//     const returnedDate = res.data.objectDate;
-//     const returnedArtist = res.data.artistDisplayName;
-//     const returnedURL = res.data.objectURL;
-//     const returnedMedium = res.data.medium;
-//     console.log(res.data);
-//   })
-//   .catch((err) => {
-//     console.log('ERROR', err);
-//   });
