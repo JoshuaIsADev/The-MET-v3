@@ -6,8 +6,23 @@ const artArtist = document.querySelector('.art-artist');
 const artTitle = document.querySelector('.art-title');
 const artDate = document.querySelector('.art-date');
 const bodyDocument = document.body;
+const documentSize = [document.body.clientWidth, document.body.clientHeight];
 const usedIndices = [];
 
+//////MOVE ARTWORK INFO UP//////
+function moveArtInfo() {
+  let currentPosition = window.getComputedStyle(artInfo).justifyContent;
+  console.log(currentPosition);
+
+  if (currentPosition === 'center') {
+    artInfo.style.justifyContent = 'flex-start';
+    artInfo.style.paddingTop = '10rem';
+  } else {
+    artInfo.style.justifyContent = 'center';
+  }
+}
+
+//////SCALE ARTWORK//////
 function setDivHeight() {
   let artArtistDivHeight = document.querySelector(
     '.art-artist-container'
@@ -32,19 +47,7 @@ function scaleImage() {
   setDivHeight();
 }
 
-function moveArtInfo() {
-  let currentPosition = window.getComputedStyle(artInfo).justifyContent;
-  console.log(currentPosition);
-
-  if (currentPosition === 'center') {
-    artInfo.style.justifyContent = 'flex-start';
-    artInfo.style.paddingTop = '10rem';
-  } else {
-    artInfo.style.justifyContent = 'center';
-  }
-}
-
-//SCALE ARTWORK EVENT LISTENER
+//////SCALE ARTWORK EVENT LISTENER//////
 btnMin.addEventListener('click', function () {
   scaleImage();
   moveArtInfo();
@@ -57,13 +60,12 @@ bodyDocument.addEventListener('keydown', function (e) {
   }
 });
 
-//NEXT ARTWORK EVENT LISTENER
+//////NEXT ARTWORK EVENT LISTENER//////
 btnNext.addEventListener('click', function () {
   collectArtwork().catch((err) => {
     console.log('Error');
     console.log(err);
   });
-  console.log('next image');
 });
 
 bodyDocument.addEventListener('keydown', function (e) {
@@ -72,19 +74,10 @@ bodyDocument.addEventListener('keydown', function (e) {
       console.log('Error');
       console.log(err);
     });
-    console.log('next image');
   }
 });
 
-//GET RANDOM INDEX
-function fetchRandomID(array) {
-  const randomDecimal = Math.random();
-  const randomIndex = Math.floor(randomDecimal * array.length);
-  return randomIndex;
-}
-
-// // FETCH ARTWORK ID
-
+//////FETCH ARTWORK ID//////
 async function fetchObjectsArray() {
   const res = await axios.get(
     'https://collectionapi.metmuseum.org/public/collection/v1/search',
@@ -100,6 +93,7 @@ async function fetchObjectsArray() {
   return (returnedObjectsArray = await res.data.objectIDs);
 }
 
+//////GET RANDOM INDEX//////
 async function fetchRandomID() {
   // const objectsArray = await fetchObjectsArray();
   // const randomDecimal = await Math.random();
@@ -122,6 +116,7 @@ async function fetchRandomID() {
   return objectID;
 }
 
+//////FETCH ARTWORK DATA//////
 async function fetchArtworkData() {
   const artworkIndex = await fetchRandomID();
   const res = await axios.get(
@@ -131,15 +126,19 @@ async function fetchArtworkData() {
   return (returnedArtworkData = await res.data);
 }
 
+//////SHOW ARTWORK ON DOM//////
 async function collectArtwork() {
   const artworkData = await fetchArtworkData();
+  const deviceSize =
+    documentSize[0] <= 450 || documentSize[1] <= 450
+      ? artworkData.primaryImageSmall
+      : artworkData.primaryImage;
+  console.log(deviceSize);
   artDisplay.innerHTML = `
-  <img src="${artworkData.primaryImage}" alt="Artwork image" class="art-img" />`;
+  <img src="${deviceSize}" alt="Artwork image" class="art-img" />`;
   artTitle.innerHTML = artworkData.title;
   artArtist.innerHTML = artworkData.artistDisplayName;
   artDate.innerHTML = artworkData.objectDate;
-  console.log(artworkData.objectURL);
-  console.log(artworkData.medium);
 }
 
 collectArtwork().catch((err) => {
