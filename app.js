@@ -1,25 +1,59 @@
 const btnMin = document.querySelector('.btn-minimize');
 const btnNext = document.querySelector('.btn-next');
+const artInfo = document.querySelector('#art-info');
 const artDisplay = document.querySelector('.art-display');
 const artArtist = document.querySelector('.art-artist');
 const artTitle = document.querySelector('.art-title');
 const artDate = document.querySelector('.art-date');
 const bodyDocument = document.body;
+const usedIndices = [];
+
+function setDivHeight() {
+  let artArtistDivHeight = document.querySelector(
+    '.art-artist-container'
+  ).clientHeight;
+  let artTitleDivHeight = document.querySelector(
+    '.art-title-container'
+  ).clientHeight;
+  let artInfoDivHeight = artArtistDivHeight + artTitleDivHeight + 170;
+  let currentTop = parseInt(window.getComputedStyle(artDisplay).top);
+
+  if (currentTop <= 0) {
+    artDisplay.style.top = `${artInfoDivHeight}px`;
+  } else {
+    artDisplay.style.top = '';
+  }
+}
 
 function scaleImage() {
-  artDisplay.classList.toggle('min');
-  btnMin.classList.toggle('rotate180');
+  artDisplay.classList.toggle('art-display-min');
+  btnMin.classList.toggle('btn-expand');
   bodyDocument.classList.toggle('overflow');
+  setDivHeight();
+}
+
+function moveArtInfo() {
+  let currentPosition = window.getComputedStyle(artInfo).justifyContent;
+  console.log(currentPosition);
+
+  if (currentPosition === 'center') {
+    artInfo.style.justifyContent = 'flex-start';
+    artInfo.style.paddingTop = '10rem';
+  } else {
+    artInfo.style.justifyContent = 'center';
+  }
 }
 
 //SCALE ARTWORK EVENT LISTENER
 btnMin.addEventListener('click', function () {
   scaleImage();
+  moveArtInfo();
 });
 
 bodyDocument.addEventListener('keydown', function (e) {
   if (e.key === ' ') {
     scaleImage();
+    moveArtInfo();
   }
 });
 
@@ -67,10 +101,25 @@ async function fetchObjectsArray() {
 }
 
 async function fetchRandomID() {
+  // const objectsArray = await fetchObjectsArray();
+  // const randomDecimal = await Math.random();
+  // const randomIndex = await Math.floor(randomDecimal * objectsArray.length);
+  // return (objectID = await objectsArray[randomIndex]);
   const objectsArray = await fetchObjectsArray();
-  const randomDecimal = await Math.random();
-  const randomIndex = await Math.floor(randomDecimal * objectsArray.length);
-  return (objectID = await objectsArray[randomIndex]);
+
+  if (usedIndices.length === objectsArray.length) {
+    usedIndices.length = 0;
+  }
+
+  let randomIndex;
+  do {
+    const randomDecimal = Math.random();
+    randomIndex = Math.floor(randomDecimal * objectsArray.length);
+  } while (usedIndices.includes(randomIndex));
+
+  usedIndices.push(randomIndex);
+  const objectID = objectsArray[randomIndex];
+  return objectID;
 }
 
 async function fetchArtworkData() {
