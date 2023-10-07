@@ -10,7 +10,7 @@ body {
   height: 100lvh;
   font-family: 'Noto Serif Display', serif;
   color: #e7dec1;
-  background-color: #5d615c;
+  background-color: #161616;
   overflow-x: hidden;
   overflow-y: hidden;
 }
@@ -40,31 +40,28 @@ a {
 }
 
 h1 {
-  font-size: 6rem;
+  font-size: 4rem;
   font-weight: 400;
-  word-break: break-word;
-  text-transform: uppercase;
-  letter-spacing: -0.5rem;
-  word-spacing: 2rem;
-  text-align: justify;
-  text-align-last: justify;
-  line-height: 4.8rem;
-  padding-bottom: 0.5rem;
+  text-transform: capitalize;
+  line-height: 4rem;
+  padding-bottom: 2.5rem;
 }
 
 h2 {
-  font-size: 2.5rem;
-  font-weight: 100;
-  letter-spacing: -0.1rem;
+  font-size: 1.5rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  text-decoration: underline 1px;
+  text-underline-offset: 0.3rem;
+  letter-spacing: 0.1rem;
+  word-spacing: 1.5rem;
   line-height: 2.7rem;
-  margin-bottom: -1.8rem;
-  font-style: italic;
 }
 
 h3 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: -0.5rem;
+  font-size: 1.2rem;
+  font-weight: 300;
+  margin-bottom: 5rem;
 }
 
 h4 {
@@ -85,6 +82,18 @@ p {
   letter-spacing: 0.1rem;
 }
 
+hr.vertical {
+  border: 0;
+  margin: 0;
+  border-left: 1px solid #e7dec1;
+  height: 10%;
+  left: 3rem;
+  top: 50%;
+  transform: translateY(-50%);
+  position: fixed;
+  z-index: 99;
+}
+
 header {
   position: fixed;
   display: flex;
@@ -95,6 +104,10 @@ header {
   padding: 3rem;
   left: 0;
   top: 0;
+}
+
+main {
+  width: 100lvw;
 }
 
 footer {
@@ -115,7 +128,7 @@ nav {
 
 #art-info {
   position: fixed;
-  width: 100lvw;
+  width: 33lvw;
   height: 100lvh;
   display: flex;
   flex-direction: column;
@@ -123,13 +136,12 @@ nav {
   justify-content: center;
   top: 0;
   left: 0;
-  padding: 0 3rem;
+  padding-left: 10rem;
+  padding-right: 6rem;
   transition: justify-content 0.5s ease;
 }
 
 .art-date {
-  min-width: 15rem;
-  text-align: right;
 }
 
 #navigation {
