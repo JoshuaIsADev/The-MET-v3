@@ -99,6 +99,9 @@ header {
 
 footer {
   position: fixed;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
   left: 0.5rem;
   bottom: 1rem;
   padding: 2rem;
