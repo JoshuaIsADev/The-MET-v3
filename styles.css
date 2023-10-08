@@ -12,7 +12,7 @@ body {
   color: #e7dec1;
   background-color: #161616;
   overflow-x: hidden;
-  overflow-y: hidden;
+  overflow-y: auto;
 }
 
 .overflow {
@@ -82,16 +82,29 @@ p {
   letter-spacing: 0.1rem;
 }
 
-hr.vertical {
-  border: 0;
-  margin: 0;
-  border-left: 1px solid #e7dec1;
-  height: 10%;
+hr.left {
   left: 3rem;
-  top: 50%;
+  top: calc(50% - 2.5rem);
   transform: translateY(-50%);
   position: fixed;
   z-index: 99;
+  border: 0;
+  margin: 0;
+  border-left: 1px solid #e7dec1;
+  height: 20%;
+}
+
+hr.right {
+  right: 3rem;
+  top: calc(50% - 2.5rem);
+  transform: translateY(-50%);
+  position: fixed;
+  z-index: 99;
+  border: 0;
+  margin: 0;
+  border-left: 1px solid #e7dec1;
+  height: 20%;
+  display: '';
 }
 
 header {
@@ -132,16 +145,11 @@ nav {
   height: 100lvh;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
   top: 0;
   left: 0;
-  padding-left: 10rem;
-  padding-right: 6rem;
+  padding: 5rem 5rem 10rem 10rem;
   transition: justify-content 0.5s ease;
-}
-
-.art-date {
 }
 
 #navigation {
@@ -151,17 +159,13 @@ nav {
   gap: 0.5rem;
 }
 
-.art-artist-container {
-  width: 100%;
-}
-
-.art-title-container {
+/* .art-title-container {
   position: relative;
   display: flex;
   justify-content: space-between;
   align-items: last baseline;
   width: 100%;
-}
+} */
 
 .header-logo {
   display: flex;
@@ -177,25 +181,33 @@ nav {
 
 .art-display {
   position: absolute;
-  top: -2rem;
-  left: -2rem;
-  width: 105lvw;
-  height: 105lvh;
+  right: 0;
+  width: 100lvw;
   z-index: -100;
-  transition: top 0.5s, left 0.5s, width 0.5s, height 0.5s,
-    padding-top 0.5s ease;
+  padding: 0;
+  opacity: 0;
+}
+
+.art-title,
+.art-date,
+.art-artist {
+  opacity: 0;
+}
+
+.fade-in {
+  opacity: 1;
+  transition: opacity 1.5s ease 0s;
 }
 
 .art-display-min {
-  position: absolute;
-  left: 0;
-  width: 100lvw;
-  height: auto;
+  width: 67lvw;
+  height: 100lvh;
+  padding: 5rem 10rem 10rem;
 }
 
 .art-img {
-  object-fit: cover;
-  object-position: top;
+  object-fit: contain;
+  object-position: center;
   width: 100%;
   height: 100%;
 }
@@ -203,11 +215,14 @@ nav {
 .btn {
   width: 4rem;
   height: 4rem;
-  scale: 0.75;
-  border: solid 1px #e7dec1;
-  border-radius: 2rem;
+  scale: 1;
+  border: none;
   cursor: pointer;
   color: #e7dec1;
+}
+
+.btn-info {
+  background: url('./svg/info.svg') center no-repeat;
 }
 
 .btn-minimize {

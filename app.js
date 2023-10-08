@@ -9,6 +9,27 @@ const bodyDocument = document.body;
 const documentSize = [document.body.clientWidth, document.body.clientHeight];
 const usedIndices = [];
 
+//////FADE-OUT IN//////
+function fadeOut() {
+  artTitle.classList.remove('fade-in');
+  artDate.classList.remove('fade-in');
+  artArtist.classList.remove('fade-in');
+  artDisplay.classList.remove('fade-in');
+}
+
+function fadeIn() {
+  artDisplay.classList.add('fade-in');
+  setTimeout(() => {
+    artTitle.classList.add('fade-in');
+  }, 500);
+  setTimeout(() => {
+    artDate.classList.add('fade-in');
+  }, 800);
+  setTimeout(() => {
+    artArtist.classList.add('fade-in');
+  }, 1100);
+}
+
 //////MOVE ARTWORK INFO UP//////
 function moveArtInfo() {
   let currentPosition = window.getComputedStyle(artInfo).justifyContent;
@@ -66,6 +87,7 @@ btnNext.addEventListener('click', function () {
     console.log('Error');
     console.log(err);
   });
+  fadeOut();
 });
 
 bodyDocument.addEventListener('keydown', function (e) {
@@ -133,12 +155,21 @@ async function collectArtwork() {
     documentSize[0] <= 450 || documentSize[1] <= 450
       ? artworkData.primaryImageSmall
       : artworkData.primaryImage;
-  console.log(deviceSize);
+  const imageLoadPromise = new Promise((resolve, reject) => {
+    const img = new Image();
+    img.src = deviceSize;
+    img.onload = resolve;
+    img.onerror = reject;
+  });
+  await imageLoadPromise;
+  console.log('Image loaded:', deviceSize);
+
   artDisplay.innerHTML = `
-  <img src="${deviceSize}" alt="Artwork image" class="art-img" />`;
+  <img src="${deviceSize}" alt="Artwork image" class="art-img" loading="lazy"/>`;
   artTitle.innerHTML = artworkData.title;
   artArtist.innerHTML = artworkData.artistDisplayName;
   artDate.innerHTML = artworkData.objectDate;
+  fadeIn();
 }
 
 collectArtwork().catch((err) => {
