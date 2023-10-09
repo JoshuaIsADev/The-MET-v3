@@ -13,6 +13,7 @@ body {
   background-color: #161616;
   overflow-x: hidden;
   overflow-y: auto;
+  scroll-behavior: smooth;
 }
 
 .overflow {
@@ -82,29 +83,22 @@ p {
   letter-spacing: 0.1rem;
 }
 
-hr.left {
-  left: 3rem;
-  top: calc(50% - 2.5rem);
+hr {
   transform: translateY(-50%);
   position: fixed;
   z-index: 99;
   border: 0;
   margin: 0;
   border-left: 1px solid #e7dec1;
-  height: 20%;
+  animation: height 2s infinite linear;
+}
+
+hr.left {
+  left: 3rem;
 }
 
 hr.right {
   right: 3rem;
-  top: calc(50% - 2.5rem);
-  transform: translateY(-50%);
-  position: fixed;
-  z-index: 99;
-  border: 0;
-  margin: 0;
-  border-left: 1px solid #e7dec1;
-  height: 20%;
-  display: '';
 }
 
 header {
@@ -244,6 +238,30 @@ nav {
 .btn:hover {
   scale: 1.2;
   transition-duration: 0.25s;
+}
+
+.loading {
+  position: fixed;
+  display: flex;
+  width: 100lvw;
+  height: 100lvh;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  z-index: 2;
+}
+
+.spinner {
+  animation: rotate 1s infinite linear;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @media screen and (max-width: 850px) {

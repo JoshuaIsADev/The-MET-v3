@@ -9,25 +9,63 @@ const bodyDocument = document.body;
 const documentSize = [document.body.clientWidth, document.body.clientHeight];
 const usedIndices = [];
 
+//////LOADING SPINNER//////
+const renderSpinner = function (parentEl) {
+  const markup = `
+    <div class="loading">
+      <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 58 58" fill="none" class="spinner">
+        <line y1="28.5" x2="20" y2="28.5" stroke="#E7DEC1"/>
+        <line x1="38" y1="28.5" x2="58" y2="28.5" stroke="#E7DEC1"/>
+        <line x1="29.5" y1="2.18557e-08" x2="29.5" y2="20" stroke="#E7DEC1"/>
+        <line x1="29.5" y1="38" x2="29.5" y2="58" stroke="#E7DEC1"/>
+        <line x1="8.84769" y1="8.14059" x2="22.9898" y2="22.2827" stroke="#E7DEC1"/>
+        <line x1="35.7168" y1="35.0107" x2="49.859" y2="49.1528" stroke="#E7DEC1"/>
+        <line x1="49.8594" y1="8.84769" x2="35.7173" y2="22.9898" stroke="#E7DEC1"/>
+        <line x1="22.9903" y1="35.7178" x2="8.84814" y2="49.8599" stroke="#E7DEC1"/>
+      </svg>
+    </div>`;
+  parentEl.insertAdjacentHTML('afterbegin', markup);
+};
+
+//////REMOVE SPINNER//////
+// const removeSpinner = function () {
+//   const loadingElements = document.querySelectorAll('.loading');
+//   loadingElements.forEach((element) => {
+//     if (element.parentNode) {
+//       setTimeout(() => {
+//         element.parentNode.removeChild(element);
+//       }, 1000);
+//     }
+//   });
+// };
+const removeSpinner = function () {
+  const loadingElements = document.querySelectorAll('.loading');
+  loadingElements.forEach((element) => {
+    if (element.parentNode) {
+      element.parentNode.removeChild(element);
+    }
+  });
+};
+
 //////FADE-OUT IN//////
+function fadeIn() {
+  artDisplay.classList.add('fade-in');
+  setTimeout(() => {
+    artTitle.classList.add('fade-in');
+  }, 700);
+  setTimeout(() => {
+    artDate.classList.add('fade-in');
+  }, 1200);
+  setTimeout(() => {
+    artArtist.classList.add('fade-in');
+  }, 1500);
+}
+
 function fadeOut() {
   artTitle.classList.remove('fade-in');
   artDate.classList.remove('fade-in');
   artArtist.classList.remove('fade-in');
   artDisplay.classList.remove('fade-in');
-}
-
-function fadeIn() {
-  artDisplay.classList.add('fade-in');
-  setTimeout(() => {
-    artTitle.classList.add('fade-in');
-  }, 500);
-  setTimeout(() => {
-    artDate.classList.add('fade-in');
-  }, 800);
-  setTimeout(() => {
-    artArtist.classList.add('fade-in');
-  }, 1100);
 }
 
 //////MOVE ARTWORK INFO UP//////
@@ -87,6 +125,7 @@ btnNext.addEventListener('click', function () {
     console.log('Error');
     console.log(err);
   });
+  // renderSpinner(bodyDocument);
   fadeOut();
 });
 
@@ -150,6 +189,7 @@ async function fetchArtworkData() {
 
 //////SHOW ARTWORK ON DOM//////
 async function collectArtwork() {
+  renderSpinner(bodyDocument);
   const artworkData = await fetchArtworkData();
   const deviceSize =
     documentSize[0] <= 450 || documentSize[1] <= 450
@@ -163,9 +203,9 @@ async function collectArtwork() {
   });
   await imageLoadPromise;
   console.log('Image loaded:', deviceSize);
-
   artDisplay.innerHTML = `
   <img src="${deviceSize}" alt="Artwork image" class="art-img" loading="lazy"/>`;
+  removeSpinner();
   artTitle.innerHTML = artworkData.title;
   artArtist.innerHTML = artworkData.artistDisplayName;
   artDate.innerHTML = artworkData.objectDate;
