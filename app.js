@@ -1,5 +1,6 @@
-const btnMin = document.querySelector('.btn-minimize');
 const btnNext = document.querySelector('.btn-next');
+const btnMin = document.querySelector('.btn-minimize');
+const btnInfo = document.querySelector('.btn-info');
 const artInfo = document.querySelector('#art-info');
 const artDisplay = document.querySelector('.art-display');
 const artArtist = document.querySelector('.art-artist');
@@ -9,7 +10,7 @@ const bodyDocument = document.body;
 const documentSize = [document.body.clientWidth, document.body.clientHeight];
 const usedIndices = [];
 
-//////LOADING SPINNER//////
+//////SHOW LOADING SPINNER//////
 const renderSpinner = function (parentEl) {
   const markup = `
     <div class="loading">
@@ -27,28 +28,22 @@ const renderSpinner = function (parentEl) {
   parentEl.insertAdjacentHTML('afterbegin', markup);
 };
 
-//////REMOVE SPINNER//////
-// const removeSpinner = function () {
-//   const loadingElements = document.querySelectorAll('.loading');
-//   loadingElements.forEach((element) => {
-//     if (element.parentNode) {
-//       setTimeout(() => {
-//         element.parentNode.removeChild(element);
-//       }, 1000);
-//     }
-//   });
-// };
-const removeSpinner = function () {
+//////REMOVE LOADING SPINNER//////
+function removeSpinner() {
   const loadingElements = document.querySelectorAll('.loading');
   loadingElements.forEach((element) => {
+    console.log('remove element', element);
     if (element.parentNode) {
       element.parentNode.removeChild(element);
     }
   });
-};
+}
 
 //////FADE-OUT IN//////
 function fadeIn() {
+  removeHide();
+  fadeOut();
+  removeSpinner();
   artDisplay.classList.add('fade-in');
   setTimeout(() => {
     artTitle.classList.add('fade-in');
@@ -68,6 +63,20 @@ function fadeOut() {
   artDisplay.classList.remove('fade-in');
 }
 
+//////TOGGLE ARTWORK INFO//////
+function toggleInfo() {
+  artTitle.classList.toggle('hide');
+  artDate.classList.toggle('hide');
+  artArtist.classList.toggle('hide');
+}
+
+//////REMOVE HIDE//////
+function removeHide() {
+  artTitle.classList.remove('hide');
+  artDate.classList.remove('hide');
+  artArtist.classList.remove('hide');
+}
+
 //////MOVE ARTWORK INFO UP//////
 function moveArtInfo() {
   let currentPosition = window.getComputedStyle(artInfo).justifyContent;
@@ -82,40 +91,39 @@ function moveArtInfo() {
 }
 
 //////SCALE ARTWORK//////
-function setDivHeight() {
-  let artArtistDivHeight = document.querySelector(
-    '.art-artist-container'
-  ).clientHeight;
-  let artTitleDivHeight = document.querySelector(
-    '.art-title-container'
-  ).clientHeight;
-  let artInfoDivHeight = artArtistDivHeight + artTitleDivHeight + 170;
-  let currentTop = parseInt(window.getComputedStyle(artDisplay).top);
+// function setDivHeight() {
+//   let artArtistDivHeight = document.querySelector(
+//     '.art-artist-container'
+//   ).clientHeight;
+//   let artTitleDivHeight = document.querySelector(
+//     '.art-title-container'
+//   ).clientHeight;
+//   let artInfoDivHeight = artArtistDivHeight + artTitleDivHeight + 170;
+//   let currentTop = parseInt(window.getComputedStyle(artDisplay).top);
 
-  if (currentTop <= 0) {
-    artDisplay.style.top = `${artInfoDivHeight}px`;
-  } else {
-    artDisplay.style.top = '';
-  }
-}
+//   if (currentTop <= 0) {
+//     artDisplay.style.top = `${artInfoDivHeight}px`;
+//   } else {
+//     artDisplay.style.top = '';
+//   }
+// }
 
 function scaleImage() {
   artDisplay.classList.toggle('art-display-min');
   btnMin.classList.toggle('btn-expand');
   bodyDocument.classList.toggle('overflow');
-  setDivHeight();
+  // setDivHeight();
+  removeHide();
 }
 
 //////SCALE ARTWORK EVENT LISTENER//////
 btnMin.addEventListener('click', function () {
   scaleImage();
-  moveArtInfo();
 });
 
 bodyDocument.addEventListener('keydown', function (e) {
   if (e.key === ' ') {
     scaleImage();
-    moveArtInfo();
   }
 });
 
@@ -125,7 +133,6 @@ btnNext.addEventListener('click', function () {
     console.log('Error');
     console.log(err);
   });
-  // renderSpinner(bodyDocument);
   fadeOut();
 });
 
@@ -136,6 +143,12 @@ bodyDocument.addEventListener('keydown', function (e) {
       console.log(err);
     });
   }
+  fadeOut();
+});
+
+//////HIDE INFO EVENT LISTENER//////
+btnInfo.addEventListener('click', function () {
+  toggleInfo();
 });
 
 //////FETCH ARTWORK ID//////
@@ -156,10 +169,6 @@ async function fetchObjectsArray() {
 
 //////GET RANDOM INDEX//////
 async function fetchRandomID() {
-  // const objectsArray = await fetchObjectsArray();
-  // const randomDecimal = await Math.random();
-  // const randomIndex = await Math.floor(randomDecimal * objectsArray.length);
-  // return (objectID = await objectsArray[randomIndex]);
   const objectsArray = await fetchObjectsArray();
 
   if (usedIndices.length === objectsArray.length) {
