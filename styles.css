@@ -94,14 +94,6 @@ hr {
   border-left: 1px solid #e7dec1;
 }
 
-hr.left {
-  left: 3rem;
-}
-
-hr.right {
-  right: 3rem;
-}
-
 header {
   position: fixed;
   display: flex;
@@ -267,13 +259,19 @@ nav {
 }
 
 @media screen and (max-width: 1200px) {
+
+  h1 {
+    font-size: 3rem;
+    line-height: 3rem;
+  }
+
   #art-info {
     width: 40lvw;
     top: 0;
     left: 0;
     padding: 5rem 1rem 10rem 5rem;
   }
-
+  
   .art-display-min {
     right: 0;
     width: 60lvw;
@@ -296,6 +294,7 @@ nav {
     letter-spacing: 1rem;
     word-spacing: 1rem;
     line-height: 2rem;
+    margin-bottom: 2rem;
   }
   
   h3 {
@@ -316,43 +315,53 @@ nav {
     height: 2.25rem;
   }
 
+/* #main {
+  display: flex;
+  flex-direction: column;
+} */
+
   #art-info {
+    position: relative;
     display: flex;
     opacity: 1;
     flex-direction: column;
     justify-content:flex-start;
     width: 100lvw;
+    height: auto;
     top: 0;
     left: 0;
-    padding: 3rem 1rem 10rem 1rem;
+    padding: 3rem 1rem 1rem 1rem;
   }
-
-  .art-display-min {
-    right: 0;
-    width: 60lvw;
-    padding: 5rem 5rem 10rem 1rem;
-  }
-
-
+  
   .header-logo {
     gap: 1rem;
   }
-
+  
   .art-display {
-    position: absolute;
+    position: relative;
     right: 0;
     width: 100lvw;
-    height: 100lvh;
+    height: auto;
     z-index: -100;
-    padding: 0;
+    padding-bottom: 6rem;
     margin: 0;
   }
-
+  
+  .art-display-min {
+    position:relative;
+    width: 100%;
+    padding: 1rem 1rem 6rem 1rem;
+  }
+  
   .art-img {
-    object-fit:cover;
+    object-fit:contain;
     object-position: center;
     width: 100%;
     height: 100%;
+  }
+
+  .btn-minimize, .btn-info {
+    display: none;
   }
 }
 
