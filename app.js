@@ -6,6 +6,7 @@ const artDisplay = document.querySelector('.art-display');
 const artArtist = document.querySelector('.art-artist');
 const artTitle = document.querySelector('.art-title');
 const artDate = document.querySelector('.art-date');
+const artImg = document.querySelector('.art-img');
 const bodyDocument = document.body;
 const documentSize = [document.body.clientWidth, document.body.clientHeight];
 const usedIndices = [];
@@ -26,7 +27,6 @@ const renderSpinner = function (parentEl) {
 function removeSpinner() {
   const loadingElements = document.querySelectorAll('.loading');
   loadingElements.forEach((element) => {
-    console.log('remove element', element);
     if (element.parentNode) {
       element.parentNode.removeChild(element);
     }
@@ -35,7 +35,7 @@ function removeSpinner() {
 
 //////FADE-OUT IN//////
 function fadeIn() {
-  removeHide();
+  removeHideInfo();
   fadeOut();
   removeSpinner();
   artDisplay.classList.add('fade-in');
@@ -58,15 +58,19 @@ function fadeOut() {
 }
 
 //////TOGGLE ARTWORK INFO//////
-function toggleHide() {
-  const elementsToToggleHide = [artTitle, artDate, artArtist];
-  elementsToToggleHide.forEach((element) => element.classList.toggle('hide'));
+function toggleHideInfo() {
+  const elementsTotoggleHideInfo = [artTitle, artDate, artArtist];
+  elementsTotoggleHideInfo.forEach((element) =>
+    element.classList.toggle('hide')
+  );
 }
 
 //////REMOVE HIDE//////
-function removeHide() {
-  const elementsToRemoveHide = [artTitle, artDate, artArtist];
-  elementsToRemoveHide.forEach((element) => element.classList.remove('hide'));
+function removeHideInfo() {
+  const elementsToremoveHideInfo = [artTitle, artDate, artArtist];
+  elementsToremoveHideInfo.forEach((element) =>
+    element.classList.remove('hide')
+  );
 }
 
 //////MOVE ARTWORK INFO UP//////
@@ -102,10 +106,12 @@ function moveArtInfo() {
 
 function scaleImage() {
   artDisplay.classList.toggle('art-display-min');
+  artInfo.classList.toggle('art-info-min');
   btnMin.classList.toggle('btn-expand');
   bodyDocument.classList.toggle('overflow');
+  // artImg.classList.toggle('art-img-min');
   // setDivHeight();
-  removeHide();
+  removeHideInfo();
 }
 
 //////SCALE ARTWORK EVENT LISTENER//////
@@ -140,7 +146,7 @@ bodyDocument.addEventListener('keydown', function (e) {
 
 //////HIDE INFO EVENT LISTENER//////
 btnInfo.addEventListener('click', function () {
-  toggleHide();
+  toggleHideInfo();
 });
 
 //////FETCH ARTWORK ID//////
@@ -188,29 +194,51 @@ async function fetchArtworkData() {
   return (returnedArtworkData = await res.data);
 }
 
+//////FETCH ARTWORK DIMENSIONS//////
+function artworkDimension(artworkResolution) {
+  let img = new Image();
+  img.src = artworkResolution;
+
+  // img.onload = function () {
+  //   let height = img.height;
+  //   let width = img.width;
+  //   const windowRatio = window.innerHeight / window.innerWidth;
+  //   const artworkRatio = height / width;
+  //   if (windowRatio < artworkRatio) {
+  //     console.log('portrait');
+  //     return 'art-display-vertical';
+  //   } else {
+  //     console.log('landscape');
+  //     return 'art-display';
+  //   }
+  // };
+}
+
 //////SHOW ARTWORK ON DOM//////
 async function collectArtwork() {
   renderSpinner(bodyDocument);
   const artworkData = await fetchArtworkData();
-  const deviceSize =
+  const artworkResolution =
     documentSize[0] <= 450 || documentSize[1] <= 450
       ? artworkData.primaryImageSmall
       : artworkData.primaryImage;
+  // const deviceOrientation =
+  //   window.innerWidth < window.innerHeight ? 'art-img-min' : 'art-img';
   const imageLoadPromise = new Promise((resolve, reject) => {
     const img = new Image();
-    img.src = deviceSize;
+    img.src = artworkResolution;
     img.onload = resolve;
     img.onerror = reject;
   });
   await imageLoadPromise;
-  console.log('Image loaded:', deviceSize);
   artDisplay.innerHTML = `
-  <img src="${deviceSize}" alt="Artwork image" class="art-img" loading="lazy"/>`;
+  <img src="${artworkResolution}" alt="Artwork image" class="art-img" loading="lazy"/>`;
   removeSpinner();
   artTitle.innerHTML = artworkData.title;
   artArtist.innerHTML = artworkData.artistDisplayName;
   artDate.innerHTML = artworkData.objectDate;
   fadeIn();
+  // artworkDimension(artworkResolution);
 }
 
 collectArtwork().catch((err) => {

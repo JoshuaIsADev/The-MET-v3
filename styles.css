@@ -132,7 +132,6 @@ nav {
   transform: scale(0.65);
   transform-origin: center left;
   transition: 0.5s transform;
-  justify-content: e;
 }
 
 #navigation {
@@ -159,6 +158,7 @@ nav {
   width: 100lvw;
   z-index: -100;
   padding: 0;
+  padding-bottom: 6rem;
   opacity: 0;
 }
 
@@ -185,6 +185,13 @@ nav {
 
 .art-img {
   object-fit: contain;
+  object-position: center;
+  width: 100%;
+  height: 100%;
+}
+
+.art-img-min {
+  object-fit: cover;
   object-position: center;
   width: 100%;
   height: 100%;
@@ -244,10 +251,14 @@ nav {
   }
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1300px) {
   h1 {
     font-size: 3rem;
     line-height: 3rem;
+  }
+
+  footer {
+    padding: 1.5rem;
   }
 
   #art-info {
@@ -257,10 +268,62 @@ nav {
     padding: 5rem 1rem 10rem 5rem;
   }
 
+  .art-display {
+    padding-bottom: 6.6rem;
+    /* height: 100lvh; */
+  }
+
   .art-display-min {
     right: 0;
     width: 60lvw;
     padding: 5rem 5rem 10rem 1rem;
+  }
+}
+
+@media screen and (max-width: 1024px) and (orientation: portrait) {
+  #art-info {
+    position: relative;
+    display: flex;
+    opacity: 1;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100lvw;
+    height: auto;
+    top: 0;
+    left: 0;
+    padding: 10rem 2rem 3rem 2rem;
+  }
+
+  .art-info-min {
+    transform: scale(1);
+  }
+
+  .art-display {
+    position: relative;
+    right: 0;
+    width: 100lvw;
+    height: auto;
+    z-index: -100;
+    padding-bottom: 6rem;
+    margin: 0;
+  }
+
+  .art-display-min {
+    position: relative;
+    width: 100%;
+    padding: 0 0 6rem 0;
+  }
+
+  .art-img {
+    object-fit: contain;
+    object-position: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .btn-minimize,
+  .btn-info {
+    display: none;
   }
 }
 
@@ -300,11 +363,6 @@ nav {
     height: 2.25rem;
   }
 
-  /* #main {
-  display: flex;
-  flex-direction: column;
-} */
-
   #art-info {
     position: relative;
     display: flex;
@@ -316,6 +374,10 @@ nav {
     top: 0;
     left: 0;
     padding: 3rem 1rem 1rem 1rem;
+  }
+
+  .art-info-min {
+    transform: scale(1);
   }
 
   .header-logo {
@@ -353,7 +415,7 @@ nav {
 
 @media screen and (max-height: 500px) and (orientation: landscape) {
   footer {
-    padding: 0.5rem 1rem;
+    padding: 0.25rem 1rem;
   }
 
   h1 {
@@ -385,18 +447,37 @@ nav {
   }
 
   #art-info {
-    padding-left: 3rem;
+    padding-left: 5.2rem;
+  }
+
+  .art-info-min {
+    transform: scale(1);
+  }
+
+  .art-display {
+    padding-bottom: 4rem;
+    height: auto;
   }
 
   .art-display-min {
     right: 0;
     width: 60lvw;
+    height: 100lvh;
     padding: 2rem 3rem 5rem 3rem;
   }
 
   .logo {
-    width: 2.25rem;
-    height: 2.25rem;
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .btn {
+    width: 4rem;
+    height: 4rem;
+    scale: 0.75;
+    border: none;
+    cursor: pointer;
+    color: #e7dec1;
   }
 }
 
